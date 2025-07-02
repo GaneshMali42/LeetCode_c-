@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<int> findMissingAndRepeatedValues(vector<vector<int>>& grid) {
+        vector <int> flat;
+        vector <int>a;
+        int count=0;
+        for(int i=0;i<grid.size();i++){
+            for(int j=0;j<grid[i].size();j++){
+                flat.push_back(grid[i][j]);
+            }
+        }
+        sort(flat.begin(), flat.end());
+        int repeated = -1;
+        int missing = -1;
+        for(int i=1;i<flat.size();i++){
+            if(flat[i]==flat[i-1]){
+                repeated=flat[i];
+            }
+            else if(flat[i]>flat[i-1]+1){
+                missing=flat[i-1]+1;
+            }
+            
+        
+        }
+        int n=flat.size();
+        if(flat[0]!=1)
+           missing=1;
+        else if(flat[n-1]!=n)
+            missing=n;
+
+        a.push_back(repeated );
+        a.push_back(missing);
+        return a;
+
+    }
+};
