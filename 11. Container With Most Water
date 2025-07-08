@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int length=height.size();
+        int left=0,right=length-1;
+        int multiple=0,maxMultiple=0;
+        while(left<right){
+            int min= std::min(height[left], height[right]);
+            multiple =min*(right-left);
+            if(multiple>maxMultiple){
+               maxMultiple=min*(right-left);
+                
+            }
+            if(height[left]>=height[right]){
+                right--;
+            }
+            else{
+                left++;
+            }
+
+        }
+        return maxMultiple;
+        
+    }
+};
