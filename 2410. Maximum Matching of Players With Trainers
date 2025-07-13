@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int matchPlayersAndTrainers(vector<int>& players, vector<int>& trainers) {
+        sort(players.begin(),players.end());
+        sort(trainers.begin(),trainers.end());
+        int count=0,left=players.size()-1,right=trainers.size()-1;
+        while(left>=0 && right>=0){
+            if(players[left]<=trainers[right]){
+                count++;
+                left--;
+                right--;
+            }
+            else if(players[left]>trainers[right]){
+                left--;
+            }
+            // else{
+            //     right--;
+            // }
+        }
+        return count;
+    }
+};
