@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int count=0;
+        for(int i=s.size();i>=0;i--){
+            if(!(isalnum(s[i])) && count>0){
+                return count;
+            }
+            else if(isalnum(s[i])){
+                count++;
+            }
+        }
+        return count;
+        
+    }
+};
