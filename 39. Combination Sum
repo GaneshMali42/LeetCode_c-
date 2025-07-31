@@ -1,0 +1,30 @@
+class Solution {
+public:
+    set<vector<int>> s;
+    void getCombinatin(vector<int> &candidates,int index,int target,vector<vector<int>> &ans,vector<int>& combine){
+        if(index==candidates.size() || target<0 ){
+            return;
+        }
+        if(target==0){
+            if(s.find(combine)==s.end()){
+                ans.push_back(combine);
+                s.insert(combine);
+                return ;
+            }
+            
+           
+        }
+        combine.push_back(candidates[index]);
+        getCombinatin(candidates,index+1,target-candidates[index],ans,combine);
+        getCombinatin(candidates,index,target-candidates[index],ans,combine) ;
+        combine.pop_back();
+        getCombinatin(candidates,index+1,target,ans,combine) ;
+
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> combine;
+        getCombinatin(candidates,0,target,ans,combine);
+        return ans;
+    }
+};
