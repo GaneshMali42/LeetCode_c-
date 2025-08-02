@@ -1,0 +1,27 @@
+class Solution {
+public:
+    set<vector<int>> s;
+    void getP(vector<int>&nums,int index,vector<vector<int>> &ans){
+        if(nums.size()==index){
+            if(s.find(nums)==s.end()){
+                ans.push_back(nums);
+                s.insert(nums);
+            }
+            return;
+        }
+        for(int i=index;i<nums.size();i++){
+            swap(nums[i],nums[index]);
+            getP(nums,index+1,ans);
+            swap(nums[i],nums[index]);
+        }
+    }
+
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<int >result;
+        getP(nums,0,ans);
+        return ans;
+
+        
+    }
+};
